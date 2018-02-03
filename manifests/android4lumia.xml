@@ -10,6 +10,8 @@
   <project name="Android4Lumia/android_device_nokia_zeal" path="device/nokia/zeal" remote="github" revision="cm-13.0-do-not-touch" />
   <!-- Kernel -->
   <project name="Android4Lumia/android_kernel_nokia_msm8x27" path="kernel/nokia/msm8x27" remote="github" revision="cm-13.0_experimental" />
+  <!-- Vendor --> 
+  <project name="Android4Lumia/proprietary_vendor_nokia" path="vendor/nokia" remote="github" revision="cm-13.0" />
   <!-- Other Repos -->
   <project name="omnirom/android_bootable_recovery" path="bootable/recovery-twrp" remote="github" revision="android-6.0" />
   <project name="LineageOS/android_external_busybox" path="external/busybox" remote="github" />
