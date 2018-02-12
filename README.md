@@ -6,6 +6,7 @@ Folder Tree
 =============
 * manifests
 * contributing
+* tools
 
 Manifests folder
 ============
@@ -16,3 +17,6 @@ Contributing folder
 ===========
 • informaion provided details how to contribute to the Android4Lumia project
 
+Tools folder
+===========
+• Scripts and tools that help building A4L specific files
