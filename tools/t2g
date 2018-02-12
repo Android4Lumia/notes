@@ -1,0 +1,85 @@
+#!/bin/bash
+
+if [ $# -ne 3 ]
+then
+	echo "Usage: $0 <twrp.img> <table.gpt> <output.img>"
+	exit 1
+fi
+
+#T2GDIR=$(readlink -f $(dirname "$0"))
+
+TMPSTR="$(mktemp)"
+TWRPIMG="$TMPSTR/twrp.img"
+GPTBAK="$TMPSTR/android.gpt"
+GPTIMG="$TMPSTR/gptflasher.img"
+
+MKB="$TMPSTR/mkbootimg"
+UPKB="$TMPSTR/unpackbootimage"
+
+PWDSAVE=$(pwd)
+
+rm -rf "$TMPSTR"
+
+mkdir -p "$TMPSTR"
+
+# Download tools
+wget -O "$MKB" https://raw.githubusercontent.com/efidroid/build/master/tools/mkbootimg &> /dev/null
+wget -O "$UPKB" https://raw.githubusercontent.com/efidroid/build/master/tools/unpackbootimg &> /dev/null
+chmod a+x "$MKB"
+chmod a+x "$UPKB"
+
+# Copy files to the TMP folder
+cp "$1" "$TWRPIMG"
+cp "$2" "$GPTBAK"
+
+# Extract bootimage
+"$UPKB" -i "$TWRPIMG" -o "$TMPSTR" > /dev/null
+
+# Extract ramdisk
+mkdir "$TMPSTR/ramdisk"
+cd "$TMPSTR/ramdisk"
+gunzip -c "$TWRPIMG-ramdisk.gz" | cpio -i &> /dev/null
+
+# Patch ramdisk
+cat <<EOF > sbin/recovery
+#!/sbin/sh
+umount /system
+umount /data
+umount /cache
+sgdisk --load-backup=/etc/android.gpt /dev/block/mmcblk0
+sync
+sync
+sync
+reboot bootloader
+EOF
+cp "$GPTBAK" etc/android.gpt
+
+# Pack ramdisk
+find . | cpio -o -H newc 2> /dev/null | gzip > ../gptramdisk.gz
+
+
+cd "$PWDSAVE"
+
+# Create bootimage
+BICMDLINE=$(cat "$TWRPIMG-cmdline")
+"$MKB" \
+	--kernel "$TWRPIMG-zImage" \
+	--ramdisk "$TMPSTR/gptramdisk.gz" \
+	--second "$TWRPIMG-second" \
+	--cmdline "$BICMDLINE androidboot.selinux=permissive" \
+	--base 0x$(cat "$TWRPIMG-base") \
+	--kernel_offset 0x$(cat "$TWRPIMG-kernel_offset") \
+	--ramdisk_offset 0x$(cat "$TWRPIMG-ramdisk_offset") \
+	--second_offset 0x$(cat "$TWRPIMG-second_offset") \
+	--tags_offset 0x$(cat "$TWRPIMG-tags_offset") \
+	--pagesize $(cat "$TWRPIMG-pagesize") \
+	--dt "$TWRPIMG-dt" \
+	-o "$GPTIMG"
+
+# Copy resulting image back
+cp "$GPTIMG" "$3"
+
+# Clean up
+rm -rf "$TMPSTR"
+
+exit 0
