@@ -15,8 +15,8 @@ changes everytime "repo sync" is run.
 
 Contributing folder
 ===========
-• informaion provided details how to contribute to the Android4Lumia project
+• Information provided details how to contribute to the Android4Lumia project.
 
 Tools folder
 ===========
-• Scripts and tools that help building A4L specific files
+• Scripts and tools that help building A4L specific files.
