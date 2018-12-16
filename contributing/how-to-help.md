@@ -3,8 +3,8 @@ How to contribute to Android4Lumia
 
 First off, to anyone who plans on contributing code to the project, thank you!
 
-• Starting off
-==========
+## • Starting off
+
 * Code must be tested by you before submitting a pull request to accept it.
 We will still review it, but we are not a code cleanup team. Be confident in what you submit!
 * You can create pull requests with multiple changes packed together, but unrelated changes must be in their
