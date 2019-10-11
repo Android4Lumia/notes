@@ -8,6 +8,7 @@
   <project name="Android4Lumia/android_device_nokia_fame" path="device/nokia/fame" remote="github" revision="cm-13.0" />
   <project name="Android4Lumia/android_device_nokia_glee" path="device/nokia/glee" remote="github" revision="cm-13.0" />
   <project name="Android4Lumia/android_device_nokia_zeal" path="device/nokia/zeal" remote="github" revision="cm-13.0" />
+  <project name="Android4Lumia/android_device_nokia_sand" path="device/nokia/sand" remote="github" revision="cm-13.0" />
   <!-- Kernel -->
   <project name="Android4Lumia/android_kernel_nokia_msm8x27" path="kernel/nokia/msm8x27" remote="github" revision="cm-13.0" />
   <!-- Vendor --> 
