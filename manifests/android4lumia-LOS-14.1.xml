@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Android4Lumia Manifest XML for LineageOS 14.1  -->
+  <!-- Lumia 8x27 common -->
+  <project name="Android4Lumia/android_device_nokia_lumia_8930-common" path="device/nokia/lumia_8930-common" remote="github" revision="cm-14.1" />
+  <project name="Android4Lumia/android_external_libinit_dpp" path="external/libinit_dpp" remote="github" revision="cm-14.1" />
+  <!-- Devices -->
+  <project name="Android4Lumia/android_device_nokia_fame" path="device/nokia/fame" remote="github" revision="cm-14.1" />
+  <project name="Android4Lumia/android_device_nokia_glee" path="device/nokia/glee" remote="github" revision="cm-14.1" />
+  <project name="Android4Lumia/android_device_nokia_zeal" path="device/nokia/zeal" remote="github" revision="cm-14.1" />
+  <!-- Kernel -->
+  <project name="Android4Lumia/android_kernel_nokia_msm8x27" path="kernel/nokia/msm8x27" remote="github" revision="cm-14.1" />
+  <!-- Vendor --> 
+  <project name="Android4Lumia/proprietary_vendor_nokia" path="vendor/nokia" remote="github" revision="cm-14.1" />
+  <!-- Other Repos -->
+  <project name="omnirom/android_bootable_recovery" path="bootable/recovery-twrp" remote="github" revision="android-7.1" />
+  <project name="LineageOS/android_external_busybox" path="external/busybox" remote="github" />
+  <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="github" />
+  <!-- end-of-manifest -->
+</manifest>
+
